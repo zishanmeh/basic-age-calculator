@@ -6,6 +6,7 @@ document.querySelector(".calcButton").addEventListener("click", () => {
     let userBirthDay = userBirthDate.getDate();
     let userBirthMonth = userBirthDate.getMonth() + 1; // Months are zero-based, so add 1
     let userBirthYear = userBirthDate.getFullYear();
+    let showDate = document.getElementById("showDate");
 
 
     // currentDate
@@ -23,32 +24,32 @@ document.querySelector(".calcButton").addEventListener("click", () => {
 
 // Validate birth year
 if (userBirthYear > todayYear){
-    document.querySelector(".showDate").innerHTML = `Birth year cannot be in the future.`;
+    showDate.innerHTML = `Birth year cannot be in the future.`;
     return;
 }
 // Validate birth month
 if (userBirthYear === todayYear && userBirthMonth > todayMonth){
-    document.querySelector(".showDate").innerHTML = `Birth month cannot be in the future.`;
+    showDate.innerHTML = `Birth month cannot be in the future.`;
     return;
 }
 // Validate birth Day
 if (userBirthYear === todayYear && userBirthMonth === todayMonth && userBirthDay > todayDay){
-    document.querySelector(".showDate").innerHTML = `Birth day cannot be in the future.`;
+    showDate.innerHTML = `Birth day cannot be in the future.`;
     return;
 }
 
-let calculateYear =  todayYear - userBirthYear;
+let calculateYear = todayYear - userBirthYear;
 
 //validate day 
 if (userBirthYear === todayYear && userBirthMonth === todayMonth & userBirthDay < todayDay){
     calculateYear = 0;
     userBirthMonth = 0;
     userBirthDay = todayDay - userBirthDay;
-    document.querySelector(".showDate").innerHTML = `You are ${calculateYear} years ${userBirthMonth} month and ${userBirthDay} days old`;
+    showDate.innerHTML = `You are ${calculateYear} years ${userBirthMonth} month and ${userBirthDay} days old`;
     return;
 }
 if (userBirthYear === todayYear && userBirthMonth === todayMonth & userBirthDay === todayDay){
-    document.querySelector(".showDate").innerHTML = "You just born today 😁";
+    showDate.innerHTML = "You just born today 😁";
     return;
 }
 
@@ -66,12 +67,13 @@ if (userBirthDay > todayDay){
     userBirthDay = todayDay - userBirthDay;
 }
 
+showDate.innerHTML = `You are ${calculateYear} years ${userBirthMonth} month and ${userBirthDay} days old`;
+
 
     } else{
-        document.querySelector(".showDate").innerHTML = "Please enter your valid birthdate."
-        return;
+        showDate.innerHTML = "Please enter your valid birthdate."
     }
     
-    document.querySelector(".showDate").innerHTML = `You are ${calculateYear} years ${userBirthMonth} month and ${userBirthDay} days old`;
+    
 
 });
